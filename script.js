@@ -1,22 +1,22 @@
+/* Functions */
+
 function createCookie(name, value, days) {
   // Convert the number of days to milliseconds
   var expiryTime = days * 24 * 60 * 60 * 1000;
-
   // Create a Date object with the current time plus the expiry time
   var expiryDate = new Date(Date.now() + expiryTime);
-
   // Convert the expiry date to a string in the correct format
   var expiryStr = expiryDate.toUTCString();
-
   // Create the cookie string
   var cookieStr = name + '=' + value + '; expires=' + expiryStr + '; path=/';
-
   // Set the cookie
   document.cookie = cookieStr;
 }
 
 
 function getCookie(cname) {
+    //This function returns the cookie content
+
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
@@ -33,27 +33,30 @@ function getCookie(cname) {
 }
 
 function createExpiry(days) {
-    // Convert the number of days to milliseconds
+    //This function returns the current time + the expiry (given in days as a parameter) in milliseconds
+
     var expiryTime = days * 24 * 60 * 60 * 1000;
-  
-    // Create a Date object with the current time plus the expiry time
     var expiryDate = (Date.now() + expiryTime);
   
     return expiryDate;
 }
 
-function getExpiry(date) {
-    date -= Date.now();
+function getExpiry(expiry) {
+    //This function returns the days left until a given expiry is reached
 
-    date /= 24;
-    date /= 60;
-    date /= 60;
-    date /= 1000;
+    expiry -= Date.now();
 
-    return date.toFixed(0);
+    expiry /= 24;
+    expiry /= 60;
+    expiry /= 60;
+    expiry /= 1000;
+
+    return expiry.toFixed(0);
 }
 
 function addedTime() {
+    //This function returns the current date in the format dd/mm/yyyy
+
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -62,79 +65,6 @@ function addedTime() {
     today = dd + '/' + mm + '/' + yyyy;
     return today;
 }
-
-function refresh_apps() {
-    var cookie;
-    var time;
-
-    cookie = getCookie("app_one");
-    createCookie("app_one", cookie, 7);
-    createCookie("exp_one", createExpiry(7), 7);
-    time = getCookie("add_one");
-    createCookie("add_one", time, 7);  
-
-    cookie = getCookie("app_two");
-    createCookie("app_two", cookie, 7);
-    createCookie("exp_two", createExpiry(7), 7);
-    time = getCookie("add_two");
-    createCookie("add_two", time, 7);
-        
-    cookie = getCookie("app_three");
-    createCookie("app_three", cookie, 7);
-    createCookie("exp_three", createExpiry(7), 7);
-    time = getCookie("add_three");
-    createCookie("add_three", time, 7);
-
-    createCookie("flag", 0, 365);
-    
-}
-
-function refresh(num) {
-    var cookie;
-    var time;
-
-    switch(num) {
-        case 1: 
-            cookie = getCookie("app_one");
-            createCookie("app_one", cookie, 7);
-            createCookie("exp_one", createExpiry(7), 7);
-            time = getCookie("add_one");
-            createCookie("add_one", time, 7); 
-        break;
-        case 2:
-            cookie = getCookie("app_two");
-            createCookie("app_two", cookie, 7);
-            createCookie("exp_two", createExpiry(7), 7);
-            time = getCookie("add_two");
-            createCookie("add_two", time, 7);
-        break;
-        case 3: 
-            cookie = getCookie("app_three");
-            createCookie("app_three", cookie, 7);
-            createCookie("exp_three", createExpiry(7), 7);
-            time = getCookie("add_three");
-            createCookie("add_three", time, 7);
-        break;
-    }
-
-    createCookie("flag", 0, 365);
-
-}
-
-function deleteCookies() {
-    document.cookie = "app_one" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "exp_one" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "add_one" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    
-    document.cookie = "app_two" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "exp_two" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "add_two" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    
-    document.cookie = "app_three" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "exp_three" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "add_three" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-}
-
 
 function add_apps() {
     (async () => {
@@ -162,15 +92,98 @@ function add_apps() {
                 createCookie("exp_three", createExpiry(7), 7);
                 createCookie("add_three", addedTime(), 7);
             }
+
+            //refresh page
+            location.reload()
+
           }
         })
       
         })()
 
+    //notifications flag
     createCookie("flag", 0, 365);
 }
 
+function refresh_app(num) {
+    //refreshes a single app
+
+    switch(num) {
+        case 1: 
+            var name = "one";
+        break;
+
+        case 2: 
+            var name = "two";
+        break;
+
+        case 3:
+            var name = "three";
+        break;
+    }
+
+    var cookie = getCookie("app_" + name);
+    var expiry = createExpiry(7);
+    var added_time = getCookie("add_" + name);
+
+    createCookie("app_" + name, cookie, 7);
+    createCookie("exp_" + name, expiry, 7);
+    createCookie("add_" + name, added_time, 7);
+        
+    //notifications flag
+    createCookie("flag", 0, 365);
+        
+    //refresh page
+    location.reload()
+}
+
+function refresh_all_apps() {
+    //refreshes all the apps
+
+    refresh_app(1);
+    refresh_app(2);
+    refresh_app(3);
+}
+
+function delete_app(num) {
+    //deletes a specific app
+
+    switch(num) {
+        case 1: 
+            var name = "one";
+        break;
+
+        case 2: 
+            var name = "two";
+        break;
+
+        case 3:
+            var name = "three";
+        break;
+    }
+
+    document.cookie = "app_" + name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "exp_" + name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "add_" + name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+    //notifications flag
+    createCookie("flag", 0, 365);
+
+    //refresh page
+    location.reload()
+}
+
+function delete_all_apps() {
+    //deletes all the apps
+
+    delete_app(1);
+    delete_app(2);
+    delete_app(3);
+}
+
 function notifications() {
+    // Could be done 100 times better, just like the other functions but this one is ass
+
     if (!("Notification" in window)) {
         // Check if the browser supports notifications
         alert("This browser does not support desktop notification");
@@ -186,9 +199,8 @@ function notifications() {
         });
     }
 
-    //SPERIMENTALE
-
     var flag = getCookie("flag");
+    const giorno = 518400000*60000;
 
     // 1 giorno = 518400000 minuti
     // 1 minuto = 60000 millisecondi
@@ -196,7 +208,7 @@ function notifications() {
     if(getExpiry(getCookie("exp_one")) <= 2 && getCookie("app_one") != "" && flag == 0) {
         const notification = new Notification("Less than 2 days remaining! Refresh your apps!");
         createCookie("flag", 1, 365);
-        sleep(518400000*60000);
+        sleep(giorno);
     } else if(getExpiry(getCookie("exp_one")) <= 1 && getCookie("app_one") != "" && flag == 1) {
         const notification = new Notification("Less than 1 day remaining! Refresh your apps!");
         createCookie("flag", 2, 365);
@@ -205,7 +217,7 @@ function notifications() {
     if(getExpiry(getCookie("exp_two")) <= 2 && getCookie("app_two") != "" && flag == 0) {
         const notification = new Notification("Less than 2 days remaining! Refresh your apps!");
         createCookie("flag", 1, 365);
-        sleep(518400000*60000);
+        sleep(giorno);
     } else if(getExpiry(getCookie("exp_two")) <= 1 && getCookie("app_two") != "" && flag == 1) {
         const notification = new Notification("Less than 1 day remaining! Refresh your apps!");
         createCookie("flag", 2, 365);
@@ -214,11 +226,13 @@ function notifications() {
     if(getExpiry(getCookie("exp_three")) <= 2 && getCookie("app_three") != "" && flag == 0) {
         const notification = new Notification("Less than 2 days remaining! Refresh your apps!");
         createCookie("flag", 1, 365);
-        sleep(518400000*60000);
+        sleep(giorno);
     } else if(getExpiry(getCookie("exp_three")) <= 1 && getCookie("app_three") != "" && flag == 1) {
         const notification = new Notification("Less than 1 day remaining! Refresh your apps!");
         createCookie("flag", 2, 365);
     }
-    // At last, if the user has denied notifications, and you
-    // want to be respectful there is no need to bother them anymore.
 }
+
+/* Main (ig)*/
+
+notifications();

@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	<meta name="generator" content="Hugo 0.84.0">
-	<title>Sideloadly Helper · v1.0</title>	
+	<title>SideReminder · v1.1</title>	
 	<script src="script.js"></script>
 	<!-- Bootstrap core CSS -->
 	<link href="bootstrap.min.css" rel="stylesheet">
@@ -27,32 +27,30 @@
 		}
 	}
 	</style>
-	<!-- Custom styles for this template -->
-	<link href="style.css" rel="stylesheet"> </head>
-	<script>notifications();</script>
-
+	<link href="style.css" rel="stylesheet"> 
+</head>
 <body>
 	<div class="container py-3">
 		<header>
 			<div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-				<a href="/" class="d-flex align-items-center text-dark text-decoration-none"> <span class="fs-4">Sideloadly Helper</span> </a>
+				<a href="/" class="d-flex align-items-center text-dark text-decoration-none"> <span class="fs-4">SideReminder</span> </a>
 				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto"> <a class="me-3 py-2 text-dark text-decoration-none" href="#">Home</a> </nav>
 			</div>
-			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+			<div class="k-header p-3 pb-md-4 mx-auto text-center">
 				<h1 class="display-4 fw-normal">Applications</h1>
-				<p class="fs-5 text-muted">These are all the sideloaded applications with sideloadly, manually refreshed each time to get a notification (on ios 16.4 web push notifications!) to remember your refresh (probably bugged, maybe not)</p>
+				<p class="fs-5 text-muted">SideReminder job is to help you remember your weekly refresh for services like sideloadly, unlike altstore they allow you to sideload 3 applications! (soon ios 16.4 push notifications)</p>
 			</div>
 		</header>
 		<main>
 			<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 				<div class="col">
-					<button type="button" class="w-100 btn btn-lg btn-outline-success" style="margin-bottom: 2rem;" onclick="add_apps();">Add Application</button>
+					<button type="button" class="w-100 btn btn-lg btn-outline-success" style="margin-bottom: 2rem;" onclick="add_apps();">Add Applications</button>
 				</div>
 				<div class="col">
-					<button type="button" class="w-100 btn btn-lg btn-outline-danger" style="margin-bottom: 2rem;" onclick="deleteCookies();">Delete All Applications</button>
+					<button type="button" class="w-100 btn btn-lg btn-outline-danger" style="margin-bottom: 2rem;" onclick="delete_all_apps();">Delete All Applications</button>
 				</div>
 				<div class="col">
-					<button type="button" class="w-100 btn btn-lg btn-outline-primary" style="margin-bottom: 2rem;" onclick="refresh_apps();">Refresh all apps</button>
+					<button type="button" class="w-100 btn btn-lg btn-outline-primary" style="margin-bottom: 2rem;" onclick="refresh_all_apps();">Refresh All Apps</button>
 				</div>
 				<div class="col">
 					<div class="card mb-4 rounded-3 shadow-sm">
@@ -66,7 +64,8 @@
 							<ul class="list-unstyled mt-3 mb-4">
 								<li>Added on: <div id="added_one">Expired</div></li>
 							</ul>
-							<button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="refresh(1)">Refresh</button>
+							<button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="refresh_app(1)">Refresh</button>
+							<button type="button" class="w-100 btn btn-lg btn-outline-danger" style="margin-top: 0.5rem;" onclick="delete_app(1)">Delete</button>
 						</div>
 						<script>
 							if (getCookie("app_one") != "") {
@@ -74,7 +73,6 @@
 								document.getElementById("expiry_one").textContent = getExpiry(getCookie("exp_one"));
 								document.getElementById("added_one").textContent = getCookie("add_one");
 							}
-							//console.log(getCookie("app_one"));
 						</script>
 					</div>
 				</div>
@@ -82,8 +80,7 @@
 					<div class="card mb-4 rounded-3 shadow-sm">
 						<div class="card-header py-3">
 							<h4 class="my-0 fw-normal">
-								<div id="title_two">App Two
-								</div>
+								<div id="title_two">App Two</div>
 							</h4> 
 						</div>
 						<div class="card-body">
@@ -91,7 +88,8 @@
 							<ul class="list-unstyled mt-3 mb-4">
 								<li>Added on: <div id="added_two">Expired</div></li>
 							</ul>
-							<button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="refresh(2)">Refresh</button>
+							<button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="refresh_app(2)">Refresh</button>
+							<button type="button" class="w-100 btn btn-lg btn-outline-danger" style="margin-top: 0.5rem;" onclick="delete_app(2)">Delete</button>
 						</div>
 						<script>
 							if (getCookie("app_two") != "") {
@@ -99,7 +97,6 @@
 								document.getElementById("expiry_two").textContent = getExpiry(getCookie("exp_two"));
 								document.getElementById("added_two").textContent = getCookie("add_two");
 							}
-							//console.log(getCookie("app_one"));
 						</script>
 					</div>
 				</div>
@@ -107,8 +104,7 @@
 					<div class="card mb-4 rounded-3 shadow-sm">
 						<div class="card-header py-3">
 							<h4 class="my-0 fw-normal">
-								<div id="title_three">App Three
-								</div>
+								<div id="title_three">App Three</div>
 							</h4> 
 						</div>
 						<div class="card-body">
@@ -116,7 +112,8 @@
 							<ul class="list-unstyled mt-3 mb-4">
 								<li>Added on: <div id="added_three">Expired</div></li>
 							</ul>
-							<button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="refresh(3)">Refresh</button>
+							<button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="refresh_app(3)">Refresh</button>
+							<button type="button" class="w-100 btn btn-lg btn-outline-danger" style="margin-top: 0.5rem;" onclick="delete_app(3)">Delete</button>
 						</div>
 						<script>
 							if (getCookie("app_three") != "") {
@@ -124,7 +121,6 @@
 								document.getElementById("expiry_three").textContent = getExpiry(getCookie("exp_three"));
 								document.getElementById("added_three").textContent = getCookie("add_three");
 							}
-							//console.log(getCookie("app_one"));
 						</script>
 					</div>
 				</div>
@@ -137,19 +133,19 @@
 				<div class="col-6 col-md">
 					<h5>Features</h5>
 					<ul class="list-unstyled text-small">
-						<li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
+						<li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Home</a></li>
 					</ul>
 				</div>
 				<div class="col-6 col-md">
 					<h5>Resources</h5>
 					<ul class="list-unstyled text-small">
-						<li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
+						<li class="mb-1"><a class="link-secondary text-decoration-none" href="https://github.com/valekatoz/SideReminder">SideReminder Github</a></li>
 					</ul>
 				</div>
 				<div class="col-6 col-md">
 					<h5>About</h5>
 					<ul class="list-unstyled text-small">
-						<li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+						<li class="mb-1"><a class="link-secondary text-decoration-none" href="https://github.com/valekatoz/">My Github</a></li>
 					</ul>
 				</div>
 			</div>
