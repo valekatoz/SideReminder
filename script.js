@@ -200,9 +200,9 @@ function notifications() {
     }
 
     var flag = getCookie("flag");
-    const giorno = 518400000*60000;
+    const giorno = 1440*60000;
 
-    // 1 giorno = 518400000 minuti
+    // 1 giorno = 1440 minuti
     // 1 minuto = 60000 millisecondi
 
     if(getExpiry(getCookie("exp_one")) <= 2 && getCookie("app_one") != "" && flag == 0) {
