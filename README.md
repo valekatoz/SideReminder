@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# SideReminder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+SideReminder is a simple react website that helps you remember your weekly refresh for services like Sideloadly.
 
-## Available Scripts
+With SideReminder, you can set up reminders for each app and receive notifications when it's time to refresh them. You can track the expiry date of your apps and get notified when they are about to expire.
 
-In the project directory, you can run:
+## Hosting
 
-### `npm start`
+SideReminder is open source and can be hosted on your own server. Here's how to do it:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    1. clone the repo
+    2. `npm install`
+    3. `npm start`
+    
+Don't worry if you can't host it yourself, I am currently hosting it through Cloudflare Pages. However, please be aware that I cannot guarantee its availability or safety for long-term use.
+    
+    sidereminder.valekatoz.com
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to use
 
-### `npm test`
+    1. Go to the SideReminder website.
+    2. Allow cookies and enable JavaScript in your browser settings. (Usually both are default)
+    3. Add your apps to set up reminders for each one.
+    4. Enjoy hassle-free sideload reminders!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Disclaimer
 
-### `npm run build`
+SideReminder is provided "as is" without warranty of any kind, express or implied. The developer of SideReminder cannot guarantee that it is bug-free, error-free, or free of vulnerabilities. Use at your own risk.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I created this project during my free time. Although I'm not an expert, I believe it could be helpful to others.
