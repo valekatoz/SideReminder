@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import Card from './components/Card';
+import Footer from './components/Footer';
+import Header from './components/Heading';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="flex flex-col justify-between bg-white dark:bg-gray-900 min-h-screen">
+      <Header />
+      <div className="container mx-auto px-4">
+        <div className="place-items-center mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+          <Card appName="spotify++" />
+          <Card />
+          <Card />
+        </div>
+      </div>
+      <Footer />
+    </main>
   );
 }
 
