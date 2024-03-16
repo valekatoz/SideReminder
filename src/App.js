@@ -8,7 +8,8 @@ function App() {
       <Header />
       <div className="container mx-auto px-4">
         <div className="place-items-center mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-          <Card appName="spotify++" />
+          {/* Example card */}
+          <Card appLogo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/1024px-Spotify_logo_without_text.svg.png" appName="Spotify++" expiry = "3 Days" />
           <Card />
           <Card />
         </div>

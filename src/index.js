@@ -1,3 +1,8 @@
+/* 
+TODO:
+- Change index.html in /public/
+- Everything
+*/
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
