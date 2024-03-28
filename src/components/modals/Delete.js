@@ -1,9 +1,12 @@
-function Delete({ onClose }) {
+import { deleteApp } from "../../assets/js/functions";
+
+function Delete({ number, onClose }) {
     const handleCancel = () => {
         onClose();
     };
 
     const handleConfirm = () => {
+        deleteApp(number);
         onClose();
     };
 

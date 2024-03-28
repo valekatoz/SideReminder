@@ -1,9 +1,12 @@
-function Add({ onClose }) {
+import { createCookie, createExpiry } from "../../assets/js/functions";
+
+function Add({ number, onClose }) {
     const handleCancel = () => {
         onClose();
     };
 
     const handleConfirm = () => {
+        createCookie(number, document.getElementById("name").value+"~"+document.getElementById("logo").value+"~"+createExpiry(7), 365); // creates the app~logo~expiry cookie
         onClose();
     };
 

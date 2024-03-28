@@ -2,8 +2,16 @@ import { useState } from 'react';
 import Delete from './modals/Delete';
 import Refresh from './modals/Refresh';
 import Add from './modals/Add';
+import { getCookie, getExpiry } from '../assets/js/functions';
 
-function Card({ appLogo = "https://raw.githubusercontent.com/valekatoz/SideReminder/main/src/assets/img/placeholder.jpg", appName = "App", expiry = "Expired" }) {
+function Card({ number, appLogo = "https://raw.githubusercontent.com/valekatoz/SideReminder/main/src/assets/img/placeholder.jpg", appName = "App", expiry = "Expired" }) {
+    if (getCookie(number) !== "") {
+        const parts = getCookie(number).split('~');
+        appName = parts[0];
+        appLogo = parts[1];
+        expiry = getExpiry(parts[2]);
+    }
+
     const [showAddModal, setShowAddModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showRefreshModal, setShowRefreshModal] = useState(false);
@@ -34,9 +42,9 @@ function Card({ appLogo = "https://raw.githubusercontent.com/valekatoz/SideRemin
 
     return (
         <div className="relative w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            {showAddModal && <Add onClose={handleCloseAddModal} />}
-            {showDeleteModal && <Delete onClose={handleCloseDeleteModal} />}
-            {showRefreshModal && <Refresh onClose={handleCloseRefreshModal} />}
+            {showAddModal && <Add number={number} onClose={handleCloseAddModal} />}
+            {showDeleteModal && <Delete number={number} onClose={handleCloseDeleteModal} />}
+            {showRefreshModal && <Refresh number={number} onClose={handleCloseRefreshModal} />}
             <div className="flex justify-end px-4 pt-4">
                 <div className="relative">
                 </div>

@@ -1,9 +1,12 @@
-function Refresh({ onClose }) {
+import { refreshApp } from "../../assets/js/functions";
+
+function Refresh({ number, onClose }) {
     const handleCancel = () => {
         onClose();
     };
 
     const handleConfirm = () => {
+        refreshApp(number);
         onClose();
     };
 
