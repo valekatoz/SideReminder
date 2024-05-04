@@ -8,7 +8,9 @@ function Card({ number, appLogo = "https://raw.githubusercontent.com/valekatoz/S
     if (getCookie(number) !== "") {
         const parts = getCookie(number).split('~');
         appName = parts[0];
-        appLogo = parts[1];
+        if(parts[1].length > 0) {
+            appLogo = parts[1];
+        }
         expiry = getExpiry(parts[2]);
     }
 
