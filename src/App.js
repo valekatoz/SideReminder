@@ -7,7 +7,6 @@ function App() {
     <main className="flex flex-col justify-between bg-white dark:bg-gray-900 min-h-screen">
       <Header />
       <div className="container mx-auto px-4">
-        {/* ads */}
         <div className="place-items-center mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
           {/* Example card */}
           <Card number="1" />
