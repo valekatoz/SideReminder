@@ -23,6 +23,10 @@ Don't worry if you can't host it yourself, I am currently hosting it through Clo
     3. Add your apps to set up reminders for each one.
     4. Enjoy hassle-free sideload reminders!
 
+## Screenshots
+
+![Homepage](/assets/screen.png)
+
 ## Disclaimer
 
 SideReminder is provided "as is" without warranty of any kind, express or implied. The developer of SideReminder cannot guarantee that it is bug-free, error-free, or free of vulnerabilities. Use at your own risk.
